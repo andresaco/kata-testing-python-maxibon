@@ -44,7 +44,14 @@ Your task as Python Developer is to resolve this problem or test an already impl
 pip install -U pytest hypothesis
 ```
 
-* If you prefer to just learn how to use [property based testing][property-based-testing] you can use this repository just checkout to the branch ``write-tests``.
+* If you prefer to just learn how to use [property based testing][property-based-testing] you can use this repository just checkout to the branch ``write-tests``. Tests and source code are stored in different directories. ou can execute the tests from a terminal as follows:
+
+```
+export PYTHONPATH=src
+pytest tests
+```
+
+If you don't want to manage environment variables, consider using pytest-pythonpath library
 
 ## Extra tasks:
 

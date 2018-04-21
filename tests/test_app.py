@@ -1,7 +1,7 @@
 import pytest
 import sys
 from hypothesis import given
-from hypothesis.strategies import text, integers, lists, tuples
+from hypothesis.strategies import text, integers, lists, tuples, builds
 from app import Developer, Kitchen
 
 @given(text(), integers(-sys.maxsize -1, -1))
@@ -38,14 +38,13 @@ def test_team_needs():
     for d in team:
         assert d[0].maxibon_requests() == d[1]
 
-@given(lists(tuples(text(), integers(0, 10))))
-def test_always_min_maxibons(l):
+@given(builds(Developer, text(), integers(0, 10)))
+def test_always_min_maxibons(developer):
     # Given
     k = Kitchen()
 
-    for t in l:
-        developer = Developer(t[0], t[1])
-        # When
-        remaining = developer.pick_maxibon(k)
-        # Then
-        assert remaining > 2
+    # When
+    remaining = developer.pick_maxibon(k)
+
+    # Then
+    assert remaining > 2
